@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package log_methods;
+
+message RegisterRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message StoreUserDataRequest {
+    string data = 1;
+    string username = 2;
+    string name = 3;
+    string bio = 4;
+}
+
+message ChatbotInitializeRequest {
+    string user_bio = 1;
+    string selected_scenario = 2;
+    string username = 3;
+    string chatbot_id = 4;
+}
+
+message ChatbotSendRequest {
+    string chatbot_id = 1;
+    string message = 2;
+    string response = 3;
+}
+
+message EthicsEngineSendRequest {
+    string chatbot_id = 1;
+    string background = 2;
+    string dilemma = 3;
+    string options = 4;
+    string desired_result = 5;
+    string response = 6;
+}
+
+message StandardResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+service LogService {
+    rpc Register(RegisterRequest) returns (StandardResponse);
+    rpc Login(LoginRequest) returns (StandardResponse);
+    rpc StoreUserData(StoreUserDataRequest) returns (StandardResponse);
+    rpc ChatbotInitialize(ChatbotInitializeRequest) returns (StandardResponse);
+    rpc ChatbotSend(ChatbotSendRequest) returns (StandardResponse);
+    rpc EthicsEngineSend(EthicsEngineSendRequest) returns (StandardResponse);
+}
